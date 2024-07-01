@@ -1,0 +1,23 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "backend for entrepreneuria",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/Alish-Basnett/backend-entrepreneuria.git"
+    },
+    "author": "Alish Basnet",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Alish-Basnett/backend-entrepreneuria/issues"
+    },
+    "homepage": "https://github.com/Alish-Basnett/backend-entrepreneuria#readme",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5"
+    }
+}

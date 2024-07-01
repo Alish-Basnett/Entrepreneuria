@@ -1,0 +1,35 @@
+.signup-container {
+  background-image: url("../../assets/images/login-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 84vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signupform-container {
+  width: 40vw;
+  /* Adjusted width for signup form container */
+}
+
+.back-to-login {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.back-to-login:hover {
+  text-decoration: underline;
+}

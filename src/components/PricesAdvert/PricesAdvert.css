@@ -1,0 +1,39 @@
+.prices-advert {
+  width: 100%;
+  height: 3vh;
+  overflow: hidden;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  position: relative;
+}
+
+.scrolling-text {
+  display: flex;
+  transition: transform 1s ease;
+  /* Transition duration for sliding */
+  animation: scroll 30s linear infinite;
+}
+
+.product {
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 200px;
+  /* Width of each product item */
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% + 200px));
+    /* Adjust 200px based on width */
+  }
+}
+
+.prices-advert:hover .scrolling-text {
+  animation: scroll 10s linear infinite;
+  animation-play-state: paused;
+}

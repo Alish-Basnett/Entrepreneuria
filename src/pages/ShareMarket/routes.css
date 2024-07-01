@@ -1,0 +1,50 @@
+.stock-listings-container {
+  padding: 20px;
+}
+
+.stock-listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.stock-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.prices {
+  margin-top: 5px;
+}
+
+.price {
+  margin-bottom: 5px;
+}
+
+.percentage-change {
+  font-size: 14px;
+}
+
+.positive-change {
+  color: green;
+}
+
+.negative-change {
+  color: red;
+}
