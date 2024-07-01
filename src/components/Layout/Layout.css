@@ -1,0 +1,53 @@
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gems {
+  background-color: #1c1c1c;
+  color: white;
+  padding: 2px 2px 0px 22px;
+  margin: 0px 8px;
+  border-radius: 10px;
+  width: 2vw;
+  /* Initial width in viewport width */
+  overflow: hidden;
+  /* Hide overflow content */
+  transition: width 0.6s ease;
+  /* Transition for width change */
+  display: flex;
+  justify-content: center;
+  /* Center align content */
+}
+
+.gems:hover {
+  width: 4vw;
+  /* Expand to full viewport width on hover */
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.balance {
+  background-color: green;
+  color: white;
+  padding: 7px 10px 7px 6px;
+  border-radius: 10px;
+}
+
+.plus {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-left: 10px;
+}
+
+.gems:hover .plus {
+  opacity: 1;
+}
+
+.gems:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+}
