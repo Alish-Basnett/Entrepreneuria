@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../../contexts/UserContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUserID } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost:3001/api/users/login",
-        {
-          username,
-          password,
-        }
+        { username, password }
       );
+      const userID = response.data.userID;
       console.log(response.data);
+      // Store userID in local storage
+      localStorage.setItem("userID", userID);
+      // Update context
+      setUserID(userID);
       // Handle successful login (e.g., redirect to home page)
       navigate("/home");
     } catch (error) {

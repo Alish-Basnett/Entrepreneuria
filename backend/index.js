@@ -25,8 +25,12 @@ const poolPromise = new sql.ConnectionPool(config)
 // Import and use user routes
 const register = require("./routes/register");
 const login = require("./routes/login");
+const setupCompany = require("./routes/companysetup");
+const getcompanyinfo = require("./routes/getcompanyinfo");
 app.use("/api/users", register(poolPromise));
 app.use("/api/users", login(poolPromise));
+app.use("/api/users", setupCompany(poolPromise));
+app.use("/api/users", getcompanyinfo(poolPromise));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -8,6 +8,8 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
+import axios from "axios";
+import UserContext from "../../contexts/UserContext";
 
 const industries = [
   { value: "agriculture", label: "Agriculture" },
@@ -18,15 +20,42 @@ const industries = [
 ];
 
 const CompanySetupPage = ({ open, onClose }) => {
+  const { userID } = useContext(UserContext);
+
+  useEffect(() => {
+    if (!userID) {
+      console.warn("User ID is not available.");
+    }
+  }, [userID]);
+
   const handleClose = () => {
     onClose();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    // You can collect form data and process it as needed
-    onClose(); // Close the dialog after form submission
+    const companyName = e.target.companyName.value;
+    const industry = e.target.startingIndustry.value;
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/users/setupCompany",
+        {
+          companyName,
+          industry,
+          userID,
+        }
+      );
+      console.log(response.data);
+      onClose(); // Close the dialog after form submission
+    } catch (error) {
+      console.error("Error during company setup:", error);
+      if (error.response) {
+        alert(`Failed to set up company: ${error.response.data.message}`);
+      } else {
+        alert("Failed to set up company");
+      }
+    }
   };
 
   return (
@@ -38,21 +67,15 @@ const CompanySetupPage = ({ open, onClose }) => {
             autoFocus
             margin="dense"
             id="companyName"
+            name="companyName"
             label="Company Name"
             type="text"
             fullWidth
             required
           />
-          <input
-            type="file"
-            id="profilePicture"
-            name="profilePicture"
-            accept="image/*"
-            style={{ marginTop: "1rem" }}
-            required
-          />
           <TextField
             id="startingIndustry"
+            name="startingIndustry"
             select
             label="Starting Industry"
             fullWidth
@@ -66,6 +89,7 @@ const CompanySetupPage = ({ open, onClose }) => {
               </MenuItem>
             ))}
           </TextField>
+          {userID && <p>User ID: {userID}</p>}
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit" variant="contained" color="primary">

@@ -5,6 +5,7 @@ import CompanySetupPage from "../CompanySetupPage/CompanySetup";
 
 const HomePage = () => {
   const [isCompanySetupOpen, setIsCompanySetupOpen] = useState(false);
+  const [refreshNavbar, setRefreshNavbar] = useState(false);
 
   const handleOpenCompanySetup = () => {
     setIsCompanySetupOpen(true);
@@ -12,11 +13,15 @@ const HomePage = () => {
 
   const handleCloseCompanySetup = () => {
     setIsCompanySetupOpen(false);
+    setRefreshNavbar(!refreshNavbar); // Trigger refresh
   };
 
   return (
     <div>
-      <Navbar onCompanyNameClick={handleOpenCompanySetup} />
+      <Navbar
+        onCompanyNameClick={handleOpenCompanySetup}
+        refresh={refreshNavbar}
+      />
       <PricesAdvert />
       <h2>Home</h2>
       <CompanySetupPage
