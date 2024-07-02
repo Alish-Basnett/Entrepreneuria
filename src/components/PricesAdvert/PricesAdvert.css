@@ -4,7 +4,8 @@
   overflow: hidden;
   background-color: #1c1c1c;
   color: #ffffff;
-  position: relative;
+  position: fixed;
+  z-index: 1000;
 }
 
 .scrolling-text {

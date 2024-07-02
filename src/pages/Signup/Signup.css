@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 84vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -13,13 +13,14 @@
 .signup-box {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 2rem;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .signupform-container {
-  width: 40vw;
-  /* Adjusted width for signup form container */
+  min-width: 35vw;
+  min-height: 676px;
+  padding-bottom: 22px;
 }
 
 .back-to-login {
