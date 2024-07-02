@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Box, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import entreLogo from "../../assets/images/entre-logo-black.png";
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -42,43 +43,105 @@ const SignupForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <Box display="flex" flexDirection="column" height="30vh">
+      <Box
+        flex={1}
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          p: 3,
+          color: "black",
+          height: "100%",
+          marginTop: "10px",
+        }}
+      >
+        <div
+          className="flex"
+          style={{ justifyContent: "space-between", flexDirection: "column" }}
+        >
+          <img
+            src={entreLogo} // replace with your image source
+            alt="Signup illustration"
+            style={{
+              width: "70%",
+              maxWidth: "200px",
+              marginTop: "20px",
+              marginBottom: "20px",
+              marginRight: "10px",
+            }}
+          />
+          <div>
+            <Typography variant="h4" gutterBottom>
+              Signup for Entrepreneuria
+            </Typography>
+          </div>
+        </div>
+      </Box>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          p: 3,
+          paddingBottom: 0,
+        }}
+      >
         <TextField
-          type="text"
-          label="Username"
-          variant="outlined"
+          margin="normal"
+          required
           fullWidth
+          id="username"
+          label="Username"
+          name="username"
+          autoComplete="username"
+          autoFocus
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required
-          margin="normal"
         />
         <TextField
-          type="password"
-          label="Password"
-          variant="outlined"
+          margin="normal"
+          required
           fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
-          margin="normal"
         />
         <TextField
-          type="password"
-          label="Confirm Password"
-          variant="outlined"
+          margin="normal"
+          required
           fullWidth
+          name="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          id="confirmPassword"
+          autoComplete="current-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-          margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          style={{ backgroundColor: "#be023c" }}
+          className="signup-button"
+        >
           Signup
         </Button>
-      </form>
-    </div>
+        <Link to="/login" className="back-to-login">
+          Already have an account? Login here.
+        </Link>
+      </Box>
+    </Box>
   );
 };
 

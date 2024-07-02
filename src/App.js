@@ -30,7 +30,7 @@ function App() {
             <Route path="/share" element={<ShareMarket />} />
             <Route path="/home" element={<HomePage />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </UserContext.Provider>
