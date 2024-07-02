@@ -17,7 +17,7 @@ module.exports = (poolPromise) => {
 
       // Fetch the user from the database
       const query = `
-        SELECT * FROM Users WHERE Username = @Username
+        SELECT UserID, Password FROM Users WHERE Username = @Username
       `;
       const result = await pool
         .request()
@@ -39,7 +39,9 @@ module.exports = (poolPromise) => {
           .json({ message: "Invalid username or password" });
       }
 
-      res.status(200).json({ message: "Login successful" });
+      res
+        .status(200)
+        .json({ message: "Login successful", userID: user.UserID });
     } catch (err) {
       console.error("SQL error", err);
       res.status(500).send("Server error");

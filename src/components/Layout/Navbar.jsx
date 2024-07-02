@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   AppBar,
   Toolbar,
@@ -7,16 +7,41 @@ import {
   MenuItem,
   IconButton,
   Avatar,
+  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import UserContext from "../../contexts/UserContext";
 import "./Layout.css";
 import Gems from "../../assets/images/Gems.png";
 import Add from "../../assets/images/add.png";
 import GemsShop from "../../pages/GemsShop/GemsShop"; // Adjust the import path if necessary
 
-const Navbar = ({ onCompanyNameClick }) => {
+const Navbar = ({ onCompanyNameClick, refresh }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const [isGemsShopOpen, setIsGemsShopOpen] = useState(false);
+  const [companyName, setCompanyName] = useState("Your Company");
+  const { userID } = useContext(UserContext);
+
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/users/getCompanyInfo",
+          {
+            params: { userID },
+          }
+        );
+        setCompanyName(response.data.companyName);
+      } catch (error) {
+        console.error("Error fetching company name:", error);
+      }
+    };
+
+    if (userID) {
+      fetchCompanyName();
+    }
+  }, [userID, refresh]); // Added refresh as a dependency
 
   const handleMenuClick = (event) => {
     setMenuAnchorEl(event.currentTarget);
@@ -34,8 +59,7 @@ const Navbar = ({ onCompanyNameClick }) => {
     setIsGemsShopOpen(false);
   };
 
-  // Replace with actual company name and profile picture from user context or state
-  const companyName = "Your Company";
+  // Replace with actual profile picture from user context or state
   const profilePicture = ""; // Replace with profile picture URL or Avatar component
 
   return (
@@ -71,6 +95,11 @@ const Navbar = ({ onCompanyNameClick }) => {
                   <img src={Add} alt="add" width={"16px"} height={"16px"} />
                 </div>
               </div>
+
+              <Typography variant="h6" style={{ marginLeft: "16px" }}>
+                {companyName}
+              </Typography>
+
               <IconButton onClick={handleMenuClick} color="inherit">
                 <Avatar alt="Profile Picture" src={profilePicture} />
               </IconButton>

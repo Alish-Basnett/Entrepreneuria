@@ -19,7 +19,6 @@ const LoginPage = () => {
             <Link to="/signup">
               {" "}
               {/* Use Link component to navigate to /signup route */}
-              <button>Signup</button>
             </Link>
           </div>
         </div>
